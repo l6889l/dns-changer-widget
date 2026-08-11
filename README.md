@@ -6,7 +6,7 @@ A simple Android app for quickly switching between system and custom DNS servers
 [**Download the latest APK**](https://github.com/l6889l/dns-changer-widget/releases)
 
 ### 2. Open the app and grant the required permissions
-<video src="media/oa&gp.mp4" controls></video>
+<video src="media/granpt-permissions.mp4" controls></video>
 ### 3. Choose your DNS server
 Choose one of the available presets, or enter a DNS server URL/hostname or IP address manually.
 
