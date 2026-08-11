@@ -26,22 +26,19 @@ public class DnsWidgetProvider extends AppWidgetProvider {
     private static void updateWidget(Context context, AppWidgetManager manager, int widgetId) {
         SharedPreferences prefs = context.getSharedPreferences("dns_prefs", Context.MODE_PRIVATE);
         boolean enabled = prefs.getBoolean("dns_enabled", false);
-        // Show the DNS actually in use: an empty field falls back to 1.1.1.1 (same as the service)
-        String dns1 = prefs.getString("dns_primary", "");
-        if (dns1.isEmpty()) dns1 = "1.1.1.1";
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
+        views.setTextViewText(R.id.widget_title, "Custom DNS");
+
         if (enabled) {
-            views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_on);
-            views.setTextViewText(R.id.widget_text, "DNS ON");
-            views.setTextColor(R.id.widget_text, 0xFF4CAF50);
-            views.setTextViewText(R.id.widget_dns, dns1);
+            views.setTextViewText(R.id.widget_status, "ON");
+            views.setTextColor(R.id.widget_status, 0xFF4CAF50);
+            views.setInt(R.id.widget_root, "setBackgroundColor", 0xFFE8F5E9);
         } else {
-            views.setImageViewResource(R.id.widget_icon, R.drawable.ic_widget_off);
-            views.setTextViewText(R.id.widget_text, "DNS OFF");
-            views.setTextColor(R.id.widget_text, 0xFF9E9E9E);
-            views.setTextViewText(R.id.widget_dns, "Tap to start");
+            views.setTextViewText(R.id.widget_status, "OFF (Tap to start!)");
+            views.setTextColor(R.id.widget_status, 0xFF9E9E9E);
+            views.setInt(R.id.widget_root, "setBackgroundColor", 0xFFF5F5F5);
         }
 
         Intent toggleIntent = new Intent(context, DnsWidgetProvider.class);

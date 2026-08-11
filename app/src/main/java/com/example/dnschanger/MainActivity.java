@@ -1,5 +1,7 @@
 package com.example.dnschanger;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.VpnService;
@@ -9,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText dnsPrimaryEdit;
     private EditText dnsSecondaryEdit;
-    private Switch toggleSwitch;
+    private Button addWidgetBtn;
     private TextView statusText;
     private ProgressBar progressBar;
     private Button presetGoogle;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         dnsPrimaryEdit = findViewById(R.id.dns_primary);
         dnsSecondaryEdit = findViewById(R.id.dns_secondary);
-        toggleSwitch = findViewById(R.id.toggle_switch);
+        addWidgetBtn = findViewById(R.id.add_widget);
         statusText = findViewById(R.id.status_text);
         progressBar = findViewById(R.id.progress);
         presetGoogle = findViewById(R.id.preset_google);
@@ -58,16 +59,6 @@ public class MainActivity extends AppCompatActivity {
         if (!dns2.isEmpty()) dnsSecondaryEdit.setText(dns2);
 
         boolean enabled = prefs.getBoolean("dns_enabled", false);
-        toggleSwitch.setChecked(enabled);
-
-        toggleSwitch.setOnCheckedChangeListener((btn, isChecked) -> {
-            if (isChecked) {
-                saveDns();
-                checkPermissionAndStart();
-            } else {
-                stopVpn();
-            }
-        });
 
         presetGoogle.setOnClickListener(v -> {
             dnsPrimaryEdit.setText("8.8.8.8");
@@ -86,8 +77,25 @@ public class MainActivity extends AppCompatActivity {
             dnsSecondaryEdit.setText("");
         });
         grantPermissionBtn.setOnClickListener(v -> checkPermissionAndStart());
+        addWidgetBtn.setOnClickListener(v -> addWidget());
 
         updateUi(enabled);
+    }
+
+    private void addWidget() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            AppWidgetManager.getInstance(this).requestPinAppWidget(
+                    new ComponentName(this, DnsWidgetProvider.class), null);
+        } else {
+            try {
+                Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+                pick.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER,
+                        new ComponentName(this, DnsWidgetProvider.class));
+                startActivity(pick);
+            } catch (Exception e) {
+                Toast.makeText(this, "Add the widget from the home screen", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void saveDns() {
@@ -115,14 +123,13 @@ public class MainActivity extends AppCompatActivity {
                         if (result.getResultCode() == RESULT_OK) {
                             startVpn();
                         } else {
-                            toggleSwitch.setChecked(false);
                             Toast.makeText(this, "VPN permission denied", Toast.LENGTH_SHORT).show();
                         }
                     });
 
     private void startVpn() {
         progressBar.setVisibility(View.VISIBLE);
-        statusText.setText("Starting VPN...");
+        statusText.setText(R.string.status_starting);
         Intent svc = new Intent(this, DnsVpnService.class);
         svc.setAction(DnsVpnService.ACTION_START);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -139,18 +146,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateUi(boolean enabled) {
-        if (enabled) {
-            statusText.setText("Status: ON - DNS is changed");
-        } else {
-            statusText.setText("Status: OFF - DNS is normal");
-        }
+        statusText.setText(enabled ? R.string.status_on : R.string.status_off);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
         boolean enabled = prefs.getBoolean("dns_enabled", false);
-        toggleSwitch.setChecked(enabled);
         updateUi(enabled);
     }
 }

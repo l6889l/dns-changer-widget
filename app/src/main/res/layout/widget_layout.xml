@@ -5,32 +5,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@android:drawable/editbox_background"
+    android:background="@color/light_gray"
     android:padding="4dp">
 
-    <ImageView
-        android:id="@+id/widget_icon"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:contentDescription="@string/app_name"
-        android:src="@drawable/ic_widget_off" />
-
     <TextView
-        android:id="@+id/widget_text"
+        android:id="@+id/widget_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/widget_off"
-        android:textSize="10sp"
+        android:text="Custom DNS"
+        android:textSize="12sp"
         android:textStyle="bold"
-        android:textColor="@color/accent_gray" />
-
-    <TextView
-        android:id="@+id/widget_dns"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="8sp"
-        android:textColor="@color/accent_gray"
+        android:textColor="@color/dark_blue"
         android:maxLines="1" />
 
+    <TextView
+        android:id="@+id/widget_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="OFF (Tap to start!)"
+        android:textSize="10sp"
+        android:textColor="@color/accent_gray"
+        android:maxLines="1" />
 </LinearLayout>

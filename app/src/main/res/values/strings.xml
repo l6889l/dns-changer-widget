@@ -4,8 +4,9 @@
     <string name="widget_label">DNS Changer Widget</string>
     <string name="widget_on">DNS ON</string>
     <string name="widget_off">DNS OFF</string>
-    <string name="status_on">Status: ON — DNS is changed</string>
-    <string name="status_off">Status: OFF — DNS is normal</string>
+    <string name="status_on">Status: ON</string>
+    <string name="status_off">Status: OFF — DNS is managed by the system</string>
+    <string name="status_starting">Status: Starting...</string>
     <string name="dns_primary_label">Primary DNS</string>
     <string name="dns_secondary_label">Secondary DNS (optional)</string>
     <string name="grant_permission">Grant VPN permission</string>
@@ -15,5 +16,6 @@
     <string name="preset_adguard">AdGuard</string>
     <string name="toggle_label">DNS Changer</string>
     <string name="permission_denied">VPN permission denied</string>
-    <string name="widget_hint">Tap to toggle DNS</string>
+    <string name="add_widget">Add Widget</string>
+    <string name="widget_hint">Tap the widget to toggle DNS</string>
 </resources>
