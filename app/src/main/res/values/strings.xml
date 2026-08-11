@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DNS Toggle</string>
-    <string name="widget_label">DNS Toggle</string>
+    <string name="app_name">DNS Changer Widget</string>
+    <string name="widget_label">DNS Changer Widget</string>
     <string name="widget_on">DNS ON</string>
     <string name="widget_off">DNS OFF</string>
     <string name="status_on">Status: ON — DNS is changed</string>
