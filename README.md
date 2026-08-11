@@ -3,7 +3,7 @@ A simple app for quickly switching between system and custom DNS servers directl
 ## Setup
 
 ### 1. Install the app
-[![Download app](https://img.shields.io/badge/Download-app)](https://github.com/l6889l/dns-changer-widget/releases)
+[![View releases](https://img.shields.io/badge/view_releases-green)](https://github.com/l6889l/dns-changer-widget/releases)
 
 
 
