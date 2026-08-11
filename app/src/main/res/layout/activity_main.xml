@@ -73,9 +73,9 @@
             android:id="@+id/dns_primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="textUri"
             android:maxLines="1"
-            android:hint="1.1.1.1"
+            android:hint="1.1.1.1 or dns.example.com"
             android:background="@android:drawable/editbox_background" />
 
         <TextView
@@ -91,9 +91,9 @@
             android:id="@+id/dns_secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="phone"
+            android:inputType="textUri"
             android:maxLines="1"
-            android:hint="1.0.0.1"
+            android:hint="8.8.4.4 or dns2.example.com"
             android:background="@android:drawable/editbox_background" />
 
         <!-- Presets -->
