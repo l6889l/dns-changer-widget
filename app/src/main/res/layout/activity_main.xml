@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_gray">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_blue"
+            android:paddingBottom="4dp" />
+
+        <TextView
+            android:id="@+id/status_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status_off"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:paddingBottom="16dp" />
+
+        <!-- Toggle -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@android:color/white"
+            android:padding="16dp"
+            android:marginBottom="8dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/toggle_label"
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/toggle_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:visibility="gone" />
+
+        <!-- DNS settings -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dns_primary_label"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/dns_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:hint="1.1.1.1"
+            android:background="@android:drawable/editbox_background" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/dns_secondary_label"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp" />
+
+        <EditText
+            android:id="@+id/dns_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:maxLines="1"
+            android:hint="1.0.0.1"
+            android:background="@android:drawable/editbox_background" />
+
+        <!-- Presets -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Presets:"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/preset_google"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/preset_google"
+                android:text="@string/preset_google"
+                android:background="@android:drawable/btn_default"
+                android:src="@android:drawable/ic_menu_agenda"
+                android:layout_marginEnd="4dp" />
+
+            <ImageButton
+                android:id="@+id/preset_cloudflare"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/preset_cloudflare"
+                android:background="@android:drawable/btn_default"
+                android:src="@android:drawable/ic_menu_compass"
+                android:layout_marginEnd="4dp" />
+
+            <ImageButton
+                android:id="@+id/preset_opendns"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:contentDescription="@string/preset_opendns"
+                android:background="@android:drawable/btn_default"
+                android:src="@android:drawable/ic_menu_manage" />
+        </LinearLayout>
+
+        <!-- Grant permission -->
+        <Button
+            android:id="@+id/grant_permission"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/grant_permission"
+            android:backgroundTint="@color/dark_blue"
+            android:textColor="@color/white" />
+
+        <!-- Widget hint -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_hint"
+            android:textSize="14sp"
+            android:textColor="@color/accent_gray"
+            android:paddingTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>
