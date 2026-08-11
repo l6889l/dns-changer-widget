@@ -17,11 +17,11 @@ Choose one of the available presets, or enter a DNS server URL/hostname or IP ad
 
 
 ### 4. Add the widget
-Add the **DNS Changer Widget** to your Android home screen.
+Add the **DNS Changer Widget**.
 
 <img src="media/add-widget.jpg" width="300">
 
-If the **Add Widget** button doesn't work, press and hold the app icon, then tap **Widgets**.
+If the `Add Widget` button doesn't work, press and hold the app icon, then tap `Widgets`.
 
 <img src="media/add-widget-alt-way.jpg" width="300">
 
