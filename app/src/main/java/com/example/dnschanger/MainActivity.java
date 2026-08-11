@@ -18,7 +18,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,25 +83,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addWidget() {
+        // Open the system widget picker — works on all Android versions
         ComponentName provider = new ComponentName(this, DnsWidgetProvider.class);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-            // API 31+: requestPinAppWidget requires the result callback overload
-            AppWidgetManager.getInstance(this).requestPinAppWidget(
-                    provider, null,
-                    ContextCompat.getMainExecutor(this),
-                    result -> { /* pinning result is delivered asynchronously */ });
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // API 26-30
-            AppWidgetManager.getInstance(this).requestPinAppWidget(provider, null);
-        } else {
-            // API 21-25: fall back to the system widget picker
-            try {
-                Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-                pick.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider);
-                startActivity(pick);
-            } catch (Exception e) {
-                Toast.makeText(this, "Add the widget from the home screen", Toast.LENGTH_LONG).show();
-            }
+        try {
+            Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+            pick.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider);
+            startActivity(pick);
+        } catch (Exception e) {
+            Toast.makeText(this, "Add the widget from the home screen", Toast.LENGTH_LONG).show();
         }
     }
 
