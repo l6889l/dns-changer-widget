@@ -21,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int PREFS_VERSION = 2;
+
     private EditText dnsPrimaryEdit;
     private EditText dnsSecondaryEdit;
     private Button addWidgetBtn;
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
         presetAdGuard = findViewById(R.id.preset_adguard);
         grantPermissionBtn = findViewById(R.id.grant_permission);
 
+        // One-time migration: older versions auto-saved default DNS values
+        // (1.1.1.1 / 1.0.0.1). Clear them so the fields show only hints.
+        migratePrefs();
+
         // Load saved DNS values. Fields stay empty (only hints visible) until the user types.
         String dns1 = prefs.getString("dns_primary", "");
         String dns2 = prefs.getString("dns_secondary", "");
@@ -82,15 +88,47 @@ public class MainActivity extends AppCompatActivity {
         updateUi(enabled);
     }
 
+    /** Clear legacy default DNS values written by older versions (runs once). */
+    private void migratePrefs() {
+        if (prefs.getInt("prefs_version", 0) >= PREFS_VERSION) return;
+        String dns1 = prefs.getString("dns_primary", "");
+        String dns2 = prefs.getString("dns_secondary", "");
+        if ("1.1.1.1".equals(dns1)) dns1 = "";
+        if ("1.0.0.1".equals(dns2)) dns2 = "";
+        prefs.edit()
+                .putString("dns_primary", dns1)
+                .putString("dns_secondary", dns2)
+                .putInt("prefs_version", PREFS_VERSION)
+                .apply();
+    }
+
     private void addWidget() {
-        // Open the system widget picker — works on all Android versions
         ComponentName provider = new ComponentName(this, DnsWidgetProvider.class);
-        try {
-            Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
-            pick.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider);
-            startActivity(pick);
-        } catch (Exception e) {
-            Toast.makeText(this, "Add the widget from the home screen", Toast.LENGTH_LONG).show();
+        boolean launched = false;
+
+        // Strategy 1 (Android 8+, API 26): request pinning directly — works on most launchers
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            try {
+                launched = AppWidgetManager.getInstance(this).requestPinAppWidget(provider, null);
+            } catch (Exception e) {
+                launched = false;
+            }
+        }
+
+        // Strategy 2: system widget picker
+        if (!launched) {
+            try {
+                Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
+                pick.putExtra(AppWidgetManager.EXTRA_APPWIDGET_PROVIDER, provider);
+                startActivity(pick);
+                launched = true;
+            } catch (Exception e) {
+                launched = false;
+            }
+        }
+
+        if (!launched) {
+            Toast.makeText(this, "Add the widget from the home screen (long-press -> Widgets)", Toast.LENGTH_LONG).show();
         }
     }
 
