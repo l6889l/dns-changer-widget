@@ -47,13 +47,13 @@ jobs:
       - name: Upload debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: dns-toggle-debug-apk
+          name: dns-changer-widget-debug-apk
           path: app/build/outputs/apk/debug/app-debug.apk
-          retention-days: 30
+          retention-days: 2
 
       - name: Upload signed release APK
         uses: actions/upload-artifact@v4
         with:
-          name: dns-toggle-release-apk
+          name: dns-changer-widget-release-apk
           path: app/build/outputs/apk/release/app-release.apk
-          retention-days: 30
+          retention-days: 2
