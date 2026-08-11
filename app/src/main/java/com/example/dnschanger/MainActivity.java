@@ -49,10 +49,11 @@ public class MainActivity extends AppCompatActivity {
         presetOpenDns = findViewById(R.id.preset_opendns);
         grantPermissionBtn = findViewById(R.id.grant_permission);
 
-        String dns1 = prefs.getString("dns_primary", "1.1.1.1");
-        String dns2 = prefs.getString("dns_secondary", "1.0.0.1");
-        dnsPrimaryEdit.setText(dns1);
-        dnsSecondaryEdit.setText(dns2);
+        // Load saved DNS values. Fields stay empty (only hints visible) until the user types.
+        String dns1 = prefs.getString("dns_primary", "");
+        String dns2 = prefs.getString("dns_secondary", "");
+        if (!dns1.isEmpty()) dnsPrimaryEdit.setText(dns1);
+        if (!dns2.isEmpty()) dnsSecondaryEdit.setText(dns2);
 
         boolean enabled = prefs.getBoolean("dns_enabled", false);
         toggleSwitch.setChecked(enabled);
@@ -86,10 +87,6 @@ public class MainActivity extends AppCompatActivity {
     private void saveDns() {
         String dns1 = dnsPrimaryEdit.getText().toString().trim();
         String dns2 = dnsSecondaryEdit.getText().toString().trim();
-        if (dns1.isEmpty()) {
-            dnsPrimaryEdit.setText("1.1.1.1");
-            dns1 = "1.1.1.1";
-        }
         prefs.edit()
                 .putString("dns_primary", dns1)
                 .putString("dns_secondary", dns2)

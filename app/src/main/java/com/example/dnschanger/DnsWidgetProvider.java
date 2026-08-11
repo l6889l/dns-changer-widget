@@ -26,7 +26,9 @@ public class DnsWidgetProvider extends AppWidgetProvider {
     private static void updateWidget(Context context, AppWidgetManager manager, int widgetId) {
         SharedPreferences prefs = context.getSharedPreferences("dns_prefs", Context.MODE_PRIVATE);
         boolean enabled = prefs.getBoolean("dns_enabled", false);
-        String dns1 = prefs.getString("dns_primary", "1.1.1.1");
+        // Show the DNS actually in use: an empty field falls back to 1.1.1.1 (same as the service)
+        String dns1 = prefs.getString("dns_primary", "");
+        if (dns1.isEmpty()) dns1 = "1.1.1.1";
 
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
 
