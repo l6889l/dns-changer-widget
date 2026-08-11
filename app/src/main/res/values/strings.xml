@@ -17,5 +17,4 @@
     <string name="toggle_label">DNS Changer</string>
     <string name="permission_denied">VPN permission denied</string>
     <string name="add_widget">Add Widget</string>
-    <string name="widget_hint">Tap the widget to toggle DNS</string>
 </resources>
