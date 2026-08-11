@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button presetGoogle;
     private Button presetCloudflare;
     private Button presetOpenDns;
+    private Button presetAdGuard;
     private Button grantPermissionBtn;
 
     private SharedPreferences prefs;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         presetGoogle = findViewById(R.id.preset_google);
         presetCloudflare = findViewById(R.id.preset_cloudflare);
         presetOpenDns = findViewById(R.id.preset_opendns);
+        presetAdGuard = findViewById(R.id.preset_adguard);
         grantPermissionBtn = findViewById(R.id.grant_permission);
 
         // Load saved DNS values. Fields stay empty (only hints visible) until the user types.
@@ -78,6 +80,10 @@ public class MainActivity extends AppCompatActivity {
         presetOpenDns.setOnClickListener(v -> {
             dnsPrimaryEdit.setText("208.67.222.222");
             dnsSecondaryEdit.setText("208.67.220.220");
+        });
+        presetAdGuard.setOnClickListener(v -> {
+            dnsPrimaryEdit.setText("dns.adguard-dns.com");
+            dnsSecondaryEdit.setText("");
         });
         grantPermissionBtn.setOnClickListener(v -> checkPermissionAndStart());
 

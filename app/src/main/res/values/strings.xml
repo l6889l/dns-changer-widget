@@ -7,11 +7,12 @@
     <string name="status_on">Status: ON — DNS is changed</string>
     <string name="status_off">Status: OFF — DNS is normal</string>
     <string name="dns_primary_label">Primary DNS</string>
-    <string name="dns_secondary_label">Secondary DNS</string>
+    <string name="dns_secondary_label">Secondary DNS (optional)</string>
     <string name="grant_permission">Grant VPN permission</string>
     <string name="preset_google">Google DNS</string>
     <string name="preset_cloudflare">Cloudflare</string>
     <string name="preset_opendns">OpenDNS</string>
+    <string name="preset_adguard">AdGuard</string>
     <string name="toggle_label">DNS Changer</string>
     <string name="permission_denied">VPN permission denied</string>
     <string name="widget_hint">Tap to toggle DNS</string>

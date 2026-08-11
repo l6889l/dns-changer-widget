@@ -126,8 +126,14 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="@string/preset_cloudflare"
-                android:textSize="12sp"
-                android:layout_marginEnd="4dp" />
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="4dp">
 
             <Button
                 android:id="@+id/preset_opendns"
@@ -135,6 +141,15 @@
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:text="@string/preset_opendns"
+                android:textSize="12sp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:id="@+id/preset_adguard"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:text="@string/preset_adguard"
                 android:textSize="12sp" />
         </LinearLayout>
 
