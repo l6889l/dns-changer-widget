@@ -17,7 +17,10 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Method;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -106,16 +109,20 @@ public class MainActivity extends AppCompatActivity {
         ComponentName provider = new ComponentName(this, DnsWidgetProvider.class);
         boolean launched = false;
 
-        // Strategy 1 (Android 8+, API 26): request pinning directly — works on most launchers
+        // Preferred: requestPinAppWidget (Android 8+). Called via reflection so the
+        // build works regardless of which overloads the compile SDK exposes.
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             try {
-                launched = AppWidgetManager.getInstance(this).requestPinAppWidget(provider, null);
+                Method pin = AppWidgetManager.class.getMethod(
+                        "requestPinAppWidget", ComponentName.class, Bundle.class);
+                Object result = pin.invoke(AppWidgetManager.getInstance(this), provider, null);
+                launched = Boolean.TRUE.equals(result);
             } catch (Exception e) {
                 launched = false;
             }
         }
 
-        // Strategy 2: system widget picker
+        // Fallback 1: system widget picker
         if (!launched) {
             try {
                 Intent pick = new Intent(AppWidgetManager.ACTION_APPWIDGET_PICK);
@@ -127,8 +134,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        // Fallback 2: explain how to add the widget manually
         if (!launched) {
-            Toast.makeText(this, "Add the widget from the home screen (long-press -> Widgets)", Toast.LENGTH_LONG).show();
+            new AlertDialog.Builder(this)
+                    .setTitle("Add the widget")
+                    .setMessage("Long-press the home screen, tap \"Widgets\", then drag DNS Changer Widget onto the screen.")
+                    .setPositiveButton("OK", null)
+                    .show();
         }
     }
 
