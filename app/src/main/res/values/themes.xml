@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.DnsChanger" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorSecondary">@color/accent_green</item>
+    </style>
+    <style name="Theme.DnsChanger.NoActionBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/dark_blue</item>
+        <item name="colorSecondary">@color/accent_green</item>
+    </style>
+</resources>
