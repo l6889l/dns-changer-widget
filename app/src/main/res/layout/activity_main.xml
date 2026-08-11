@@ -36,8 +36,7 @@
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:background="@android:color/white"
-            android:padding="16dp"
-            android:marginBottom="8dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="0dp"
@@ -112,35 +111,31 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <ImageButton
+            <Button
                 android:id="@+id/preset_google"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/preset_google"
                 android:text="@string/preset_google"
-                android:background="@android:drawable/btn_default"
-                android:src="@android:drawable/ic_menu_agenda"
+                android:textSize="12sp"
                 android:layout_marginEnd="4dp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/preset_cloudflare"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/preset_cloudflare"
-                android:background="@android:drawable/btn_default"
-                android:src="@android:drawable/ic_menu_compass"
+                android:text="@string/preset_cloudflare"
+                android:textSize="12sp"
                 android:layout_marginEnd="4dp" />
 
-            <ImageButton
+            <Button
                 android:id="@+id/preset_opendns"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:contentDescription="@string/preset_opendns"
-                android:background="@android:drawable/btn_default"
-                android:src="@android:drawable/ic_menu_manage" />
+                android:text="@string/preset_opendns"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <!-- Grant permission -->

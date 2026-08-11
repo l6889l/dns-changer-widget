@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private Switch toggleSwitch;
     private TextView statusText;
     private ProgressBar progressBar;
-    private ImageButton presetGoogle;
-    private ImageButton presetCloudflare;
-    private ImageButton presetOpenDns;
+    private Button presetGoogle;
+    private Button presetCloudflare;
+    private Button presetOpenDns;
     private Button grantPermissionBtn;
 
     private SharedPreferences prefs;
