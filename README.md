@@ -1,5 +1,8 @@
 # DNS Changer Widget
 A simple app for quickly switching between system and custom DNS servers directly from a home-screen widget.
+
+![](https://img.shields.io/badge/license-MIT-blue)
+
 ## Setup
 
 ### 1. Install the app
