@@ -1,5 +1,5 @@
 # DNS Changer Widget
-A free and open-source DNS changer widget for quickly switching between system and custom DNS servers directly from your device's home screen. Configure custom DNS servers using hostnames or IP addresses and toggle them on or off with a single tap.
+A free and open-source DNS changer widget for quickly switching between system and custom DNS servers directly from your device's home screen. Configure custom DNS servers using hostnames or IP addresses and toggle them on or off with a single tap. Works **without** root, ADB, or Shizuku.
 
 ![](https://img.shields.io/badge/license-MIT-blue)
 
